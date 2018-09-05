@@ -14,7 +14,7 @@ void salir();
 void main() {
 	locale::global(locale("spanish"));
 	system("cls");
-	cout << "-----------Menú-----------" << endl;
+	cout << "----------->Menú<-----------" << endl;
 	cout << "1. Alta de alumnos" << endl;
 	cout << "2. Alta de calificaciones" << endl;
 	cout << "3. Edicion de alumnos" << endl;
@@ -51,7 +51,7 @@ void main() {
 	
 }
 void AltAlumnos() {
-
+	system("cls");
 	cout << "estas en la opcion alta de alumnos" << endl;
 	cout << "que desea hacer?\n";
 	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
@@ -64,7 +64,7 @@ void AltAlumnos() {
 	main();
 }
 void AltCal() {
-
+	system("cls");
 	cout << "estas en la opcion alta de Calificacion" << endl;
 	cout << "que desea hacer?\n";
 	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
@@ -77,7 +77,7 @@ void AltCal() {
 	main();
 }
 void EdAlumnos() {
-
+	system("cls");
 	cout << "estas en la opcion Edicion de alumnos" << endl;
 	cout << "que desea hacer?\n";
 	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
@@ -90,7 +90,7 @@ void EdAlumnos() {
 	main();
 }
 void BAlumnos() {
-
+	system("cls");
 	cout << "estas en la opcion Borrar alumnos" << endl;
 	cout << "que desea hacer?\n";
 	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
@@ -103,7 +103,7 @@ void BAlumnos() {
 	main();
 }
 void ArchTexto() {
-
+	system("cls");
 	cout << "estas en la opcion Archivos de texto" << endl;
 	cout << "que desea hacer?\n";
 	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
@@ -116,7 +116,7 @@ void ArchTexto() {
 	main();
 }
 void Manual() {
-
+	system("cls");
 	cout << "estas en la opcion Manual de Usuario" << endl;
 	cout << "que desea hacer?\n";
 	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
@@ -129,7 +129,7 @@ void Manual() {
 	main();
 }
 void Listcal() {
-
+	system("cls");
 	cout << "estas en la opcion Lista de Calificacion" << endl;
 	cout << "que desea hacer?\n";
 	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
@@ -142,7 +142,7 @@ void Listcal() {
 	main();
 }
 void salir() {
-
+	system("cls");
 	cout << "¿Esta seguro que desea salir?\n";
 	cout << "1. Si.\n2. Volver al menú" << endl;
 	cin >> opcion;
