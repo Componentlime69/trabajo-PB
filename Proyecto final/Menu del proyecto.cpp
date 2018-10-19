@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
-#include<cctype>
-#include <stdio.h> 
+//#include<cctype>
+//#include <stdio.h>
 
 using namespace std;
 
@@ -157,7 +157,7 @@ void Modif() {
 			cout << "Encontré a: " << endl;
 			cout << "Nombre y apellido: " << alumno[i].nombre << " " << alumno[i].apellidos << endl;
 			cout << "¿Qué deseas modificar?" << endl;
-			cout << "1. Matrícula \n2. Nombre \n3. Apellido \n0. Nada" << endl;
+			cout << "1. Matrícula \n2. Nombre \n3. Apellido \n4. Altura \n0. Nada" << endl;
 			cin >> opcion;
 
 			switch (opcion)
@@ -312,7 +312,7 @@ void salir() {
 	cin >> opcion;
 	cin.ignore();
 	if (opcion == 1) {
-		return;
+		exit(0); //Funcion De Salida Normal con Parametro 0
 		system("pause>nul");
 
 	}
