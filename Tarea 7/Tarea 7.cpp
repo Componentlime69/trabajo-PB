@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 using namespace std;
 int opcion;
 void calle();
@@ -92,4 +92,4 @@ void cuarto1() {
 		cout << "PD: me encanta el humor negro\nfin del programa" << endl;
 		system("pause > nul");
 	}
-}
+}*/

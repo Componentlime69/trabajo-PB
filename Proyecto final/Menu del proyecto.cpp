@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include <fstream>
 //#include<cctype>
 //#include <stdio.h>
 
@@ -12,10 +13,11 @@ void AltAlumnos();
 void Modif();
 void EdAlumnos();
 void BAlumnos();
-void ArchTexto();
 void Manual();
 void Listcal();
 void salir();
+void guardar();
+void guardarCSV();
 void menu();
 int c = 0;
 struct datos {
@@ -32,6 +34,23 @@ struct datos {
 datos alumno[100];
 void main() {
 	locale::global(locale("spanish"));
+	c = 0;
+
+	ifstream archivo("ejemplo.data", ios::binary);
+
+
+	archivo.read((char*)&alumno, sizeof(alumno));
+
+
+	archivo.close();
+
+	for (int i = 0; i < 100; i++)
+	{
+		if (alumno[i].matricula != 0) {
+			c++;
+		}
+	}
+	cin.ignore();
 	menu();
 	system("pause > nul");
 }
@@ -41,10 +60,11 @@ void menu() {
 	cout << "1. Alta de alumnos" << endl;
 	cout << "2. Edicion de alumnos" << endl;
 	cout << "3. Borrar alumnos" << endl;
-	cout << "4. Archivo de texto" << endl;
-	cout << "5. Manual de usuario" << endl;
-	cout << "6. lista de alumnos y calificaciones" << endl;
-	cout << "7. Salir." << endl;
+	cout << "4. Manual de usuario" << endl;
+	cout << "5. lista de alumnos y calificaciones" << endl;
+	cout << "6. Guardar" << endl;
+	cout << "7. Guardar CSV" << endl;
+	cout << "8. Salir." << endl;
 	cout << "Elija una opcion\n";
 	cin >> opcion;
 	switch (opcion)
@@ -55,13 +75,15 @@ void menu() {
 		break;
 	case 3: BAlumnos();
 		break;
-	case 4: ArchTexto();
+	case 4: Manual();
 		break;
-	case 5: Manual();
+	case 5: Listcal();
 		break;
-	case 6: Listcal();
+	case 6: guardar();
 		break;
-	case 7: salir();
+	case 7: guardarCSV();
+		break;
+	case 8: salir();
 		break;
 	default: cout << "Esa no es una opcion valida" << endl;
 		system("pause >nul");
@@ -91,8 +113,8 @@ void AltAlumnos() {
 			while (1) {
 			correo:
 				cin.ignore();
-				getline(cin, alumno[i].correo);
-				string str = alumno[i].correo;
+				getline(cin, alumno[c].correo);
+				string str = alumno[c].correo;
 				int encontrar1 = str.find('@');
 				int encontrar2 = str.find('.com');
 				if ((encontrar1 >= 0) && (encontrar2 >= 0)) {
@@ -251,27 +273,40 @@ void BAlumnos() {
 
 	main();
 }
-void ArchTexto() {
-	system("cls");
-	cout << "estas en la opcion Archivos de texto" << endl;
-	cout << "que desea hacer?\n";
-	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
-	cin >> opcion;
-	if (opcion == 1) {
-		cout << "aun no esta disponible esa opcion" << endl;
-		system("pause > nul");
-		main();
-	}
-	main();
-}
+
 void Manual() {
 	system("cls");
 	cout << "estas en la opcion Manual de Usuario" << endl;
-	cout << "que desea hacer?\n";
-	cout << "1. Hacer ajustes\n2. Volver al menú" << endl;
+	cout << "1. Ver manual\n2. Volver al menú" << endl;
 	cin >> opcion;
 	if (opcion == 1) {
-		cout << "aun no esta disponible esa opcion" << endl;
+		cout << "--------->Manual de usuario<---------" << endl;
+		cout << "En en Menú encontrara 8 opciones" << endl;
+		cout << "-Alta de alumnos" << endl;
+		cout << "-Edicion de alumno" << endl;
+		cout << "-Borrar alumno" << endl;
+		cout << "-Manual de usuario" << endl;
+		cout << "-Lista de alumnos y calificaciones" << endl;
+		cout << "-Guardar" << endl;
+		cout << "-Guardar CSV" << endl;
+		cout << "-salir" << endl;
+		cout << "==============================================" << endl;
+		cout << "1.-ALTA DE ALUMNOS" << endl;
+		cout << "En esta opcion se da el alta de alumnos, Nombres, apellidos, matricula, direccion, etc. " << endl;
+		cout << "2.-EDICION DE ALUMNO" << endl;
+		cout << "En esta opcion puede editar todos los datos de los alumnos registrados a partir de sus matriculas" << endl;
+		cout << "3.-BORRAR ALUMNO" << endl;
+		cout << "En esta opcion podra borrar a un alumno a partir de su matricula" << endl;
+		cout << "4.-MANUAL DE USUARIO" << endl;
+		cout << "En esta opcion se podra leer el manual de usuario, la opcion en la que esta actualmente" << endl;
+		cout << "5.-LISTA DE ALUMNOS Y CALIFICACIONES" << endl;
+		cout << "En esta opcion se podra observar la lista con todos los alumnos y sus calificaciones" << endl;
+		cout << "6.-Guardar" << endl;
+		cout << "en esta opcion se puede guardar los datos" << endl;
+		cout << "6.-Guardar CSV" << endl;
+		cout << "en esta opcion se puede guardar los datos" << endl;
+		cout << "==============================================" << endl;
+		cout << "sera devuelto al menú";
 		system("pause > nul");
 		main();
 	}
@@ -279,7 +314,7 @@ void Manual() {
 }
 void Listcal() {
 	system("cls");
-	cout << "estas en la opcion Lista de Calificacion" << endl;
+	cout << "estas en la opcion Lista de alumnos" << endl;
 	cout << "que desea hacer?\n";
 	cout << "1. Mostrar Alumnos y calificaciones\n2. Volver al menú" << endl;
 	cin >> opcion;
@@ -300,7 +335,7 @@ void Listcal() {
 			system("pause > nul");
 			main();
 		}
-
+		main();
 	}
 
 }
@@ -319,5 +354,42 @@ void salir() {
 	else {
 		main();
 	}
+}
+void guardar() {
+	cout << "¿Deseas guardar?" << endl;
+	cout << "1.- Sí \n2. No." << endl;
 
+	cin >> opcion;
+
+	if (opcion == 1)
+	{
+		// Se crea objeto de escritura
+		ofstream archivo;
+
+		// Se guarda como binario
+		archivo.open("ejemplo.data", ios::binary);
+
+		// Se escribe el arreglo entero en el archivo
+		archivo.write((char*)&alumno, sizeof(alumno));
+
+		// Al terminar se cierra el archivo
+		archivo.close();
+	}
+}
+void guardarCSV() {
+	// Se crea objeto de escritura
+	ofstream archivo;
+
+	// Se guarda como binario
+	archivo.open("ejemplo.csv");
+
+	for (int i = 0; i < c; i++) { // Itera entre todos los registrados
+		archivo << alumno[i].matricula << ",";
+		archivo << alumno[i].nombre << ",";
+		archivo << alumno[i].apellidos << ",";
+
+	}
+
+	// Al terminar se cierra (esto guarda el contenido)
+	archivo.close();
 }
